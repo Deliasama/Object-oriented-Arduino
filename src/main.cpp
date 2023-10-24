@@ -1,20 +1,46 @@
-#include <Arduino.h>
+#include "Arduino.h"
+#include "DigitalOutput.h"
+#include "OOAManager.h"
+#include "Led.h"
+
+// Pin* pins[64] = { nullptr };
+
+DigitalOutput* output;
+Led led(13);
 
 void setup() {
-  Serial.begin(9600);
+    Serial.begin(9600);
 
-  pinMode(13, OUTPUT);
+    /*for(Pin* pin : pins) {
+        if(pin == nullptr)Serial.println("no");
+        if(pin != nullptr)Serial.println("yes");
+    }*/
 
-  digitalWrite(13, HIGH);
+    /*output->setState(true);
+    output->update();
+    output->setState(false);
+    output->updateInOverride(10*1000);*/
+
+    led.off();
 }
 
-// yay
 void loop() {
-  if(Serial.available() > 0) {
-    char data = Serial.read();
-    if(data == 'a') {
-      digitalWrite(13, LOW);
+    // Serial.println("Loop: ");
+    enterLoop();
+    
+    if(!led.isHigh()) {
+        wait(1*1000);
+        // led.blink(2*1000);
     }
-    Serial.print(data);
-  }
+
+    
+    /*output->setState(true);
+    output->update();
+    delay(2*1000);
+    output->setState(false);
+    output->update();
+    delay(2* 1000);*/
+    
+    // led->on();
+    exitLoop();
 }
