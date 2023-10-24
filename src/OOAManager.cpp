@@ -10,14 +10,11 @@ long startAt;
 void enterLoop() {
     deltaTime = (micros() - startAt);
     startAt = micros();
-    
-    Serial.println(deltaTime);
 };
 
 void exitLoop() {
     for(Pin* pin : pins) {
         if(pin != nullptr) {
-            // Serial.println((millis()-startAt));
             pin->tick(deltaTime);
         }
     }

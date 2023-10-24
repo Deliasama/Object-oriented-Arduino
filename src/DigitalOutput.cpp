@@ -49,9 +49,6 @@ void DigitalOutput::tick(long deltaTime) {
         update();
         tickable = false;
     }
-
-    // Serial.println(deltaTime);
-    // Serial.println(delay);
 }
 
 void DigitalOutput::setTickable(bool tickable) {
