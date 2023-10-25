@@ -1,9 +1,9 @@
 #include "DigitalOutput.h"
-#include "OOAManager.h"
+#include "Tick/TickManager.h"
 
 DigitalOutput::DigitalOutput(int pin) {
     pinMode(pin, OUTPUT);
-    pins[pin] = this;
+    TickManager::addTickable(this);
     DigitalOutput::pin = pin;
 
     Serial.println("new Digitaloutput!");
@@ -11,7 +11,7 @@ DigitalOutput::DigitalOutput(int pin) {
 
 DigitalOutput::~DigitalOutput() {
     pinMode(pin, NULL);
-    pins[pin] = NULL;
+    TickManager::removeTickable(this);
 }
 
 void DigitalOutput::setState(bool state) {
