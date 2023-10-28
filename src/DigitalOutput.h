@@ -15,13 +15,9 @@ class DigitalOutput : public Pin {
 
         void tick(long deltaTime) override;
 
-        void setTickable(bool tickable);
-
     private:
         // State the output should be (after a update)
         bool state;
-        long delay;
-        bool tickable;
         // State the output actually is
         bool currentState = false;
 };

@@ -8,5 +8,6 @@ class TickManager {
     
         static bool addTickable(ITickable* tickable);
         static bool removeTickable(ITickable* tickable);
+        static void setTickrate(ITickable* tickable, int ms);
         static void tickAll();
 };

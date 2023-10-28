@@ -37,20 +37,13 @@ void DigitalOutput::update() {
 }
 
 void DigitalOutput::updateInOverride(long ms) {
-    delay = (ms*1000);
-    tickable = true;
-}
-
-void DigitalOutput::tick(long deltaTime) {
-    if(!tickable)return;
-
-    delay -= deltaTime;
-    if(delay<=0) {
-        update();
-        tickable = false;
+    TickManager::removeTickable(this);
+    if(TickManager::addTickable(this)) {
+        TickManager::setTickrate(this, ms);
     }
 }
 
-void DigitalOutput::setTickable(bool tickable) {
-    DigitalOutput::tickable = tickable;
+void DigitalOutput::tick(long deltaTime) {
+    update();
+    TickManager::removeTickable(this);
 }
