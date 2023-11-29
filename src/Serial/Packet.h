@@ -9,6 +9,7 @@ class Packet {
         bool send();
         void setValue(uint8_t* value, int size);
         uint8_t* getData();
+        int getSize();
 
     private:
         uint8_t* data;

@@ -21,3 +21,11 @@ void Packet::setValue(uint8_t* value, int size) {
         data[i] = value[i-1];
     }
 }
+
+uint8_t* Packet::getData() {
+    return data;
+}
+
+int Packet::getSize() {
+    return dataSize;
+}
